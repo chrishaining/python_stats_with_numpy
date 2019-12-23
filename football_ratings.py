@@ -34,4 +34,4 @@ print("The estimate of Spurs' ability is {}.".format(spurs_ability))
 liverpool_ability = estimate_ability(reliability, 49, 17, 1.9)
 print("The estimate of Liverpool's ability is {}.".format(liverpool_ability))
 
-#so, this works, but it can be refactored to make it more DRY. next steps - change the estimate_ability function to take the team as an argument. If possible, can I take the information directly from the table? Even better, would it be possible to import the second table, and use this as well. A further development would be to add the outcome of estimate_ability to the new table.
+#so, this works, but it can be refactored to make it more DRY. next steps - change the estimate_ability function to take the team as an argument. If possible, can I take the information directly from the table? Even better, would it be possible to import the second table, and use this as well. A further development would be to add the outcome of estimate_ability to the new table. Another idea is to calculate the reliability. 
