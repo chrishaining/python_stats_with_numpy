@@ -23,15 +23,32 @@ print(table_2018_2019)
 reliability = 0.5
 
 #points is the current points this season, games is the current games played this season
-def estimate_ability(reliability, points, games, last_season_ppg):
-    ability = ((reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg))
-    return ability
+# def estimate_ability(reliability, points, games, last_season_ppg):
+#     ability = ((reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg))
+#     return ability
+
+def estimate_ability(team, reliability, points, games):
+    last_season_ppg = table_2018_2019.loc[table_2018_2019.Team==team, 'PPG']
+    ability = (reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg)
+    return "Based on a comparison of current form with last season's results, {}'s ability is {}. The measure of ability is points per game".format(team, ability)
+
+
+# expect 2.9
+test1 = estimate_ability('Liverpool', 1.0, 49, 17)
+print(test1)
+print(25/18)
+
+#expect 1.3 to 1.4
+test2 = estimate_ability('Man Utd', 1.0, 25, 18)
+print(test2)
+
+
 
 # expect about 1.4-1.5 if reliability is 1.0 (i.e. it takes the current PPG); expect 1.9 (last season;s PPG) if reliability is 0; since we are at halfway in the current season (18 games), what if reliability is 0.5? (answer is that it would give PPG of 1.65)
-spurs_ability = estimate_ability(reliability, 26, 18, 1.9)
-print("The estimate of Spurs' ability is {}.".format(spurs_ability))
+# spurs_ability = estimate_ability(reliability, 26, 18, 1.9)
+# print("The estimate of Spurs' ability is {}.".format(spurs_ability))
 
-liverpool_ability = estimate_ability(reliability, 49, 17, 1.9)
-print("The estimate of Liverpool's ability is {}.".format(liverpool_ability))
+# liverpool_ability = estimate_ability(reliability, 49, 17, 1.9)
+# print("The estimate of Liverpool's ability is {}.".format(liverpool_ability))
 
-#so, this works, but it can be refactored to make it more DRY. next steps - change the estimate_ability function to take the team as an argument. If possible, can I take the information directly from the table? Even better, would it be possible to import the second table, and use this as well. A further development would be to add the outcome of estimate_ability to the new table. Another idea is to calculate the reliability. 
+#so, this works, but it can be refactored to make it more DRY. next steps - change the estimate_ability function to take the team as an argument. If possible, can I take the information directly from the table? Even better, would it be possible to import the second table, and use this as well. A further development would be to add the outcome of estimate_ability to the new table. Another idea is to calculate the reliability.
