@@ -2,13 +2,7 @@
 
 #imports
 import pandas as pd
-# import tkinter as tk
-# from tkinter import *
 
-# wind=Tk()
-# btn=Button()
-# btn.pack()
-# btn["text"]="Premier League stats"
 #use a Bayesian approach to calculate a prior estimate of each team's ability
 #this means using last season's table (i'll take five teams to start)
 #there are a few ways to enter the data from the table - a dictionary, pandas, SQL. I want to practise pandas, so I've found a csv file to download. Source: https://www.premierleague.com/tables?co=1&se=210&ha=-1
@@ -20,18 +14,11 @@ table_2018_2019['PPG'] = round((table_2018_2019.Pts / table_2018_2019.P), 1)
 print(table_2018_2019)
 
 #the equation
-reliability = 0.5
 
 #points is the current points this season, games is the current games played this season
-# def estimate_ability(reliability, points, games, last_season_ppg):
-#     ability = ((reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg))
-#     return ability
-
 def estimate_ability(team, reliability, points, games):
-    # last_season_ppg = table_2018_2019.loc[table_2018_2019.Team==team, 'PPG']
     last_season_row = table_2018_2019.loc[table_2018_2019.Team==team]
     last_season_ppg = last_season_row['PPG'].item()
-    # return last_season_ppg
     ability = (reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg)
     raw_ability = (reliability*(points/games)) + ((1 - reliability) * last_season_ppg)
     ability = round(raw_ability, 1)
@@ -45,13 +32,4 @@ print(test1)
 test2 = estimate_ability('Man Utd', 1.0, 25, 18)
 print(test2)
 
-
-
-# expect about 1.4-1.5 if reliability is 1.0 (i.e. it takes the current PPG); expect 1.9 (last season;s PPG) if reliability is 0; since we are at halfway in the current season (18 games), what if reliability is 0.5? (answer is that it would give PPG of 1.65)
-# spurs_ability = estimate_ability(reliability, 26, 18, 1.9)
-# print("The estimate of Spurs' ability is {}.".format(spurs_ability))
-
-# liverpool_ability = estimate_ability(reliability, 49, 17, 1.9)
-# print("The estimate of Liverpool's ability is {}.".format(liverpool_ability))
-
-#so, this works, but it can be refactored to make it more DRY. next steps - change the estimate_ability function to take the team as an argument. If possible, can I take the information directly from the table? Even better, would it be possible to import the second table, and use this as well. A further development would be to add the outcome of estimate_ability to the new table. Another idea is to calculate the reliability.
+#23/12/2019 - next step is to develop the reliability variable. At the moment, I've made it 1.0, which means that a team's estimated ability is the same as its teacurrent form. That's not much use, so I'm going to add data from previous seasons (go back to 2016-2017). The extent to which season 2016-2017 PPG reflets 2017-2018 PPG is the starting reliability.
