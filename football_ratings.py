@@ -28,8 +28,11 @@ reliability = 0.5
 #     return ability
 
 def estimate_ability(team, reliability, points, games):
-    last_season_ppg = table_2018_2019.loc[table_2018_2019.Team==team, 'PPG']
-    # ability = (reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg)
+    # last_season_ppg = table_2018_2019.loc[table_2018_2019.Team==team, 'PPG']
+    last_season_row = table_2018_2019.loc[table_2018_2019.Team==team]
+    last_season_ppg = last_season_row['PPG'].item()
+    # return last_season_ppg
+    ability = (reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg)
     raw_ability = (reliability*(points/games)) + ((1 - reliability) * last_season_ppg)
     ability = round(raw_ability, 1)
     return "Based on a comparison of current form with last season's results, {}'s ability is {}. The measure of ability is points per game".format(team, ability)
