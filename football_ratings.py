@@ -37,7 +37,6 @@ def estimate_ability(team, reliability, points, games):
 # expect 2.9
 test1 = estimate_ability('Liverpool', 1.0, 49, 17)
 print(test1)
-print(25/18)
 
 #expect 1.3 to 1.4
 test2 = estimate_ability('Man Utd', 1.0, 25, 18)
