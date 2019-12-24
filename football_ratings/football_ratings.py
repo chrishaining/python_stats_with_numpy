@@ -42,8 +42,8 @@ print(test2)
 #23/12/2019 - next step is to develop the reliability variable. At the moment, I've made it 1.0, which means that a team's estimated ability is the same as its teacurrent form. That's not much use, so I'm going to add data from previous seasons (go back to 2016-2017). The extent to which season 2016-2017 PPG reflets 2017-2018 PPG is the starting reliability.
 
 #Use the 2016/17-2017/18 reliability to check the ability for each team in 2017/18. How well does it predict what happened?
-test3=estimate_ability('Liverpool', 0.97, 75, 38)
+test3=estimate_ability('Liverpool', 0.96, 75, 38)
 # print(75/38)
 print(test3)
-test4=estimate_ability('Liverpool', 0.97, 97, 38)
+test4=estimate_ability('Liverpool', 0.96, 97, 38)
 print(test4)

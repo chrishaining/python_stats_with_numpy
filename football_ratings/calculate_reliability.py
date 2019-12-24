@@ -26,3 +26,4 @@ corr_2019 = round(table_2018_2019.corrwith(table_2017_2018, axis = 0), 2)
 print(corr_2019)
 reliability = (reliability + corr_2019.PPG) / 2
 print(reliability)
+#an average of the reliability is 0.96
