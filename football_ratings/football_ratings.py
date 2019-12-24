@@ -29,7 +29,7 @@ def estimate_ability(team, reliability, points, games):
     ability = (reliability*(round((points/games), 1))) + ((round((1 - reliability), 1)) * last_season_ppg)
     raw_ability = (reliability*(points/games)) + ((1 - reliability) * last_season_ppg)
     ability = round(raw_ability, 1)
-    return "Based on a comparison of current form with last season's results, {}'s ability is {}. The measure of ability is points per game".format(team, ability)
+    return "Based on a comparison of current form with last season's results, {}'s ability is {}. The measure of ability is points per game.".format(team, ability)
 
 # expect 2.9
 test1 = estimate_ability('Liverpool', 1.0, 49, 17)
@@ -40,3 +40,10 @@ test2 = estimate_ability('Man Utd', 1.0, 25, 18)
 print(test2)
 
 #23/12/2019 - next step is to develop the reliability variable. At the moment, I've made it 1.0, which means that a team's estimated ability is the same as its teacurrent form. That's not much use, so I'm going to add data from previous seasons (go back to 2016-2017). The extent to which season 2016-2017 PPG reflets 2017-2018 PPG is the starting reliability.
+
+#Use the 2016/17-2017/18 reliability to check the ability for each team in 2017/18. How well does it predict what happened?
+test3=estimate_ability('Liverpool', 0.97, 75, 38)
+# print(75/38)
+print(test3)
+test4=estimate_ability('Liverpool', 0.97, 97, 38)
+print(test4)
