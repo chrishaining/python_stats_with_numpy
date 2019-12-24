@@ -6,6 +6,13 @@ import pandas as pd
 #use a Bayesian approach to calculate a prior estimate of each team's ability
 #this means using last season's table (i'll take five teams to start)
 #there are a few ways to enter the data from the table - a dictionary, pandas, SQL. I want to practise pandas, so I've found a csv file to download. Source: https://www.premierleague.com/tables?co=1&se=210&ha=-1
+
+table_2016_2017 = pd.read_csv('league-table-2016-2017.csv')
+print(table_2016_2017)
+
+table_2017_2018 = pd.read_csv('league-table-2017-2018.csv')
+print(table_2017_2018)
+
 table_2018_2019 = pd.read_csv('league-table-2018-2019.csv')
 # print(table_2018_2019)
 print(table_2018_2019.columns)
